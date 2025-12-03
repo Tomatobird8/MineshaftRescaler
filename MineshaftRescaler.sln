@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36705.20 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineshaftRescaler", "MineshaftRescaler.csproj", "{23B3C35D-C15B-470F-8479-88CF7257BDC9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23B3C35D-C15B-470F-8479-88CF7257BDC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B3C35D-C15B-470F-8479-88CF7257BDC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B3C35D-C15B-470F-8479-88CF7257BDC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B3C35D-C15B-470F-8479-88CF7257BDC9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C14C741B-E6C2-4628-8400-61BEFAFDDFC6}
+	EndGlobalSection
+EndGlobal
