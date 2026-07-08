@@ -7,32 +7,23 @@ namespace MineshaftRescaler.Patches
     [HarmonyPatch(typeof(RoundManager))]
     internal class RoundManagerPatch
     {
-        [HarmonyPatch("SpawnScrapInLevel")]
+        [HarmonyPatch(nameof(RoundManager.SpawnScrapInLevel))]
         [HarmonyTranspiler]
         internal static IEnumerable<CodeInstruction> ChangeMinshaftLootBonus(IEnumerable<CodeInstruction> instructions)
         {
-            int index = -1;
-            var codes = new List<CodeInstruction>(instructions);
+            CodeMatcher matcher = new(instructions);
 
-            for (int i = 10; i < codes.Count; i++)
+            CodeMatch[] targetPattern = 
             {
-                if (codes[i - 2].opcode == OpCodes.Ldloc_1 && codes[i - 1].opcode == OpCodes.Ldc_I4_6 && codes[i].opcode == OpCodes.Add)
-                {
-                    index = i - 1;
-                    break;
-                }
-            }
-            if (index > -1)
-            {
-                codes[index].opcode = OpCodes.Ldc_I4_S;
-                codes[index].operand = (sbyte)MineshaftRescaler.lootAmountBonus;
-                MineshaftRescaler.Logger.LogDebug("Successfully injected new loot bonus count.");
-            }
-            else
-            {
-                MineshaftRescaler.Logger.LogError("Failed to inject new mineshaft loot bonus amount. ldcloc.1 -> ldc.i4.6 -> add not found in RoundManager.SpawnScrapInLevel.");
-            }
-            return codes;
+                new CodeMatch(OpCodes.Ldloc_1),
+                new CodeMatch(OpCodes.Ldc_I4_6),
+                new CodeMatch(OpCodes.Add)
+            };
+            matcher.MatchForward(false, targetPattern)
+                .ThrowIfNotMatch("Couldn't find targetPattern for patching mineshaft bonus!")
+                .Advance(1)
+                .SetAndAdvance(OpCodes.Ldc_I4_S, (sbyte)MineshaftRescaler.lootAmountBonus.Value);
+            return matcher.InstructionEnumeration();
         }
     }
 }
