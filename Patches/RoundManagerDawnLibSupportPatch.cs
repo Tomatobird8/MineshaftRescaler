@@ -18,7 +18,7 @@ namespace MineshaftRescaler.Patches
                     DawnDungeonInfo info = RoundManager.Instance.dungeonFlowTypes[i].dungeonFlow.GetDawnInfo();
                     info.ExtraScrapGeneration = MineshaftRescaler.lootAmountBonus.Value;
                     Found = true;
-                    MineshaftRescaler.Logger.LogInfo($"Level3Flow found! Bonus of {MineshaftRescaler.lootAmountBonus} has been applied.");
+                    MineshaftRescaler.Logger.LogInfo($"Level3Flow found! Bonus of {MineshaftRescaler.lootAmountBonus.Value} has been applied.");
                     break;
                 }
             };
